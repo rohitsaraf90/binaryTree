@@ -82,15 +82,38 @@ public class  Main {
                 }else{
                     System.out.print(current.data);
                     if(current.left != null)
-                    {
-                        dataQueue.add(current.left);
-                    }
-                    if(current.right != null) {
-                        dataQueue.add(current.right);
-                    }
+                    dataQueue.add(current.left);
+                    if(current.right != null)
+                    dataQueue.add(current.right);
                 }
             }
 
+        }
+
+        public void reverse(Node node){
+            if(node == null){
+                return ;
+            }
+
+            Queue<Node> dataQueue = new LinkedList<>();
+            dataQueue.add(node);
+            dataQueue.add(null);
+
+            while (!dataQueue.isEmpty()){
+                Node current = dataQueue.remove();
+                if(current == null){
+                    System.out.println();
+                    if(!dataQueue.isEmpty()){
+                        dataQueue.add(null);
+                    }else break;
+                }else{
+                    System.out.print(current.data);
+                    if(current.right != null)
+                        dataQueue.add(current.right);
+                    if(current.left != null)
+                        dataQueue.add(current.left);
+                }
+            }
         }
     }
 
@@ -102,5 +125,6 @@ public class  Main {
 
         System.out.println("bfs");
         bt.bfs(root);
+        bt.reverse(root);
     }
 }
